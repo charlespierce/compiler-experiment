@@ -12,7 +12,7 @@ pub enum Expression {
 
 #[derive(Debug)]
 pub struct Program {
-    body: Vec<Expression>,
+    pub body: Vec<Expression>,
 }
 
 pub struct Parser {

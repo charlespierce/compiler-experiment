@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Token {
     OpenParenthesis,
     CloseParenthesis,
@@ -7,7 +7,7 @@ pub enum Token {
     String(String),
 }
 
-pub struct Tokenizer {
+pub struct Lexer {
     src: String,
     current_pos: usize,
     cursor: usize,
@@ -15,10 +15,10 @@ pub struct Tokenizer {
     ch: Option<char>,
 }
 
-impl Tokenizer {
+impl Lexer {
     pub fn new(src: String) -> Self {
         let len = src.len();
-        Tokenizer {
+        Lexer {
             src,
             current_pos: 0,
             cursor: 0,
@@ -49,7 +49,7 @@ impl Tokenizer {
     }
 }
 
-impl Iterator for Tokenizer {
+impl Iterator for Lexer {
     type Item = Token;
 
     fn next(&mut self) -> Option<Self::Item> {

@@ -1,11 +1,12 @@
-mod token;
+mod lexer;
+mod parser;
 
-use token::Tokenizer;
+use lexer::Lexer;
+use parser::Parser;
 
 fn main() {
-    let tokens = Tokenizer::new(r#"(add 2 (subtract "314" 2))"#.to_string());
+    let lexer = Lexer::new(r#"(add 2 (subtract "314" 2))"#.to_string());
+    let mut parser = Parser::new(lexer);
 
-    for token in tokens {
-        println!("{:?}", token);
-    }
+    println!("{:?}", parser.parse());
 }

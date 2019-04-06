@@ -1,16 +1,13 @@
+mod compiler;
 mod emitter;
 mod lexer;
 mod parser;
 
-use lexer::Lexer;
-use parser::Parser;
+use compiler::compile;
 
 fn main() {
     let input = r#"(add 2 (subtract "314" 2))"#;
-    let lexer = Lexer::new(input.to_string());
-    let mut parser = Parser::new(lexer);
-    let result = parser.parse();
-
+    let output = compile(input.to_string());
     println!("Input : {}", input);
-    println!("Output: {}", result.emit());
+    println!("Output: {}", output);
 }
